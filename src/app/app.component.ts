@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CoreService } from 'core';
+import { PetService, Pet, StoreService } from 'core';
 
 @Component({
 	selector: 'app-root',
@@ -9,13 +9,17 @@ import { CoreService } from 'core';
 export class AppComponent {
 	title = 'app';
 
-	constructor(private service: CoreService) {
-		this.service.getPetById(122).subscribe((res) => {
-			console.log(res);
+	constructor(private petService: PetService, private storeService: StoreService) {
+		this.petService.getPetById(603205).subscribe((res: Pet) => {
+			console.log('pet: ', res);
 		});
 
-		this.service.findPetByStatus('sold').subscribe((res) => {
-			console.log(res);
+		this.petService.getPetIdsByStatus('sold').subscribe((res) => {
+			console.log('ids: ', res);
+		});
+
+		this.storeService.getStoreInventory().subscribe(res => {
+			console.log('store: ', res);
 		});
 	}
 }
