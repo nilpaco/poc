@@ -17,6 +17,10 @@ export class AppComponent {
 		this.petService.getPetIdsByStatus('sold').subscribe((res) => {
 			console.log('ids: ', res);
 		});
+		
+		this.petService.get(15435006011094).subscribe( res => {
+			console.log('get with generic function', res)
+		})
 
 		this.storeService.getStoreInventory().subscribe(res => {
 			console.log('store: ', res);
